@@ -3,7 +3,7 @@ set -euo pipefail
 
 TARGET="${1:-all}"
 KERNEL_REPO="https://gitlab.com/vanadium-oss/sdm845/samsung/galaxysdm845/Trees/android_kernel_samsung_sdm845.git"
-KERNEL_BRANCH="lineage-22.2"
+KERNEL_BRANCH="fifteen"
 CLANG_DIR="$HOME/toolchains/clang-r487747c"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
