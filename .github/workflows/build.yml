@@ -42,9 +42,9 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo sed -i "s/#\$nrconf{restart} = 'i';/\$nrconf{restart} = 'a';/g" /etc/needrestart/needrestart.conf 2>/dev/null || true
-          sudo apt-get update -y
-          sudo apt-get install -y \
+          sudo apt-get purge -y needrestart 2>/dev/null || true
+          sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             build-essential bc flex bison libssl-dev libelf-dev libncurses5-dev \
             zstd dwarves cpio python-is-python3 device-tree-compiler curl zip ccache \
             gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
