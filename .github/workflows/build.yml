@@ -23,7 +23,7 @@ concurrency:
 
 env:
   KERNEL_REPO: https://gitlab.com/vanadium-oss/sdm845/samsung/galaxysdm845/Trees/android_kernel_samsung_sdm845.git
-  KERNEL_BRANCH: lineage-22.2
+  KERNEL_BRANCH: fifteen
   CLANG_URL: https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
 
 jobs:
@@ -155,7 +155,7 @@ jobs:
           name: LineageOS 22.2 (Kernel 4.9.337+67-Ruby) - Run ${{ github.run_number }}
           body: |
             LineageOS 22.2 Kernel 4.9.337+67-Ruby
-            - Branch: lineage-22.2
+            - Branch: fifteen
             - KernelSU (sKernelSU)
             - Droidspaces / LXC / Docker container support
             - eBPF 5.4 + CIP Subsystem
