@@ -23,7 +23,7 @@ concurrency:
 
 env:
   KERNEL_REPO: https://gitlab.com/vanadium-oss/sdm845/samsung/galaxysdm845/Trees/android_kernel_samsung_sdm845.git
-  KERNEL_BRANCH: fifteen
+  KERNEL_BRANCH: 4.9.337/ebpf/5.15/onclite/WIP
   CLANG_URL: https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android14-release/clang-r487747c.tar.gz
 
 jobs:
@@ -71,7 +71,7 @@ jobs:
           for p in ../patches/*.patch; do
             if [ -f "$p" ]; then
               echo "Applying patch: $(basename "$p")"
-              patch -p1 -N --silent < "$p" || true
+              patch -p1 -N --silent < "$p" || patch -p2 -N --silent kernel/cgroup/cgroup.c < "$p" || true
             fi
           done
           cat ../configs/droidspaces.config >> arch/arm64/configs/sdm845_defconfig
@@ -155,10 +155,10 @@ jobs:
           name: LineageOS 22.2 (Kernel 4.9.337+67-Ruby) - Run ${{ github.run_number }}
           body: |
             LineageOS 22.2 Kernel 4.9.337+67-Ruby
-            - Branch: fifteen
+            - Branch: 4.9.337/ebpf/5.15/onclite/WIP
             - KernelSU (sKernelSU)
             - Droidspaces / LXC / Docker container support
-            - eBPF 5.4 + CIP Subsystem
+            - eBPF 5.15 Subsystem
             - TikTok Blocker enabled
             - Swappiness 100 tuning
             - Devices: starqltechn (S9), star2qltechn (S9+), crownqltechn (Note 9)

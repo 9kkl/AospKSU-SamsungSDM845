@@ -3,7 +3,7 @@ set -euo pipefail
 
 TARGET="${1:-all}"
 KERNEL_REPO="https://gitlab.com/vanadium-oss/sdm845/samsung/galaxysdm845/Trees/android_kernel_samsung_sdm845.git"
-KERNEL_BRANCH="fifteen"
+KERNEL_BRANCH="4.9.337/ebpf/5.15/onclite/WIP"
 CLANG_DIR="$HOME/toolchains/clang-r487747c"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -35,7 +35,7 @@ if [ -d "$SCRIPT_DIR/patches" ]; then
     for p in "$SCRIPT_DIR"/patches/*.patch; do
         if [ -f "$p" ]; then
             echo "Applying patch: $(basename "$p")"
-            patch -p1 -N --silent < "$p" || true
+            patch -p1 -N --silent < "$p" || patch -p2 -N --silent kernel/cgroup/cgroup.c < "$p" || true
         fi
     done
 fi
