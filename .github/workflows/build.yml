@@ -62,6 +62,7 @@ jobs:
       - name: Setup KernelSU
         working-directory: kernel
         run: |
+          git clone --depth=1 https://github.com/doubledashdot/sKernelSU KernelSU
           curl -LSs "https://raw.githubusercontent.com/doubledashdot/sKernelSU/master/kernel/setup.sh" | bash -s master
           sed -i "s/\\bstrlcpy\\b/strscpy/g" drivers/kernelsu/supercall/dispatch.c 2>/dev/null || true
 
